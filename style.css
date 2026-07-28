@@ -232,6 +232,9 @@ img { max-width: 100%; height: auto; }
   min-height: 44px;
   align-items: center;
   justify-content: center;
+  position: relative;
+  z-index: 1002;
+  touch-action: manipulation;
 }
 .nav-toggle span {
   width: 22px;
@@ -243,6 +246,9 @@ img { max-width: 100%; height: auto; }
 @media (min-width: 1024px) {
   .nav-toggle { display: none; }
 }
+
+.nav-links.open { z-index: 1001; }
+
 
 .hero {
   padding: 100px 0 56px;
@@ -768,6 +774,7 @@ img { max-width: 100%; height: auto; }
   width: 100%;
   cursor: pointer;
   perspective: 600px;
+  touch-action: manipulation;
 }
 @media (min-width: 768px) { .flashcard { perspective: 800px; } }
 
