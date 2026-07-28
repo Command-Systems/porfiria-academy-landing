@@ -42,4 +42,62 @@ document.addEventListener('DOMContentLoaded', function () {
   if (statsSection) {
     observer.observe(statsSection);
   }
+
+  var cards = [
+    {
+      question: 'Qual é a enzima deficiente na Porfiria Aguda Intermitente (PAI)?',
+      answer: 'PBG-desaminase (porfobilinogênio desaminase), também conhecida como hidroximetilbilano sintase.'
+    },
+    {
+      question: 'Qual o principal sintoma abdominal das porfirias agudas?',
+      answer: 'Dor abdominal intensa e difusa, frequentemente acompanhada de náuseas, vômitos e constipação.'
+    },
+    {
+      question: 'Quais fatores podem desencadear uma crise aguda de porfiria?',
+      answer: 'Medicamentos indutores do CYP450 (barbitúricos, sulfonamidas), jejum prolongado, estresse, infecções, álcool e alterações hormonais.'
+    },
+    {
+      question: 'Qual o tratamento de primeira linha para crise aguda de porfiria?',
+      answer: 'Heminato de arginina (NormoSang/Hemina), associado a medidas de suporte como hidratação, controle da dor e suspensão de fatores desencadeantes.'
+    }
+  ];
+
+  var currentCard = 0;
+  var flashcard = document.querySelector('.flashcard');
+  var frontLabel = document.querySelector('.flashcard-front .flashcard-label');
+  var frontP = document.querySelector('.flashcard-front p:not(.flashcard-label):not(.flashcard-hint)');
+  var backLabel = document.querySelector('.flashcard-back .flashcard-label');
+  var backP = document.querySelector('.flashcard-back p');
+  var hint = document.querySelector('.flashcard-hint');
+  var status = document.querySelector('.flashcard-status');
+
+  if (flashcard && cards.length) {
+    function updateCard(index) {
+      var card = cards[index];
+      frontP.textContent = card.question;
+      backP.textContent = card.answer;
+      frontLabel.textContent = 'Pergunta ' + (index + 1);
+      backLabel.textContent = 'Resposta ' + (index + 1);
+      hint.textContent = 'Clique para ver a resposta';
+      status.textContent = 'Card ' + (index + 1) + ' de ' + cards.length + ' — clique para virar';
+      flashcard.classList.remove('flipped');
+    }
+
+    flashcard.addEventListener('click', function () {
+      if (!this.classList.contains('flipped')) {
+        this.classList.add('flipped');
+        hint.textContent = 'Clique para próxima pergunta';
+      } else {
+        currentCard = (currentCard + 1) % cards.length;
+        updateCard(currentCard);
+      }
+    });
+
+    updateCard(0);
+  }
+
+  setTimeout(function () {
+    document.body.classList.remove('page-loading');
+    document.body.classList.add('page-loaded');
+  }, 100);
 });
