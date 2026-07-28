@@ -44,61 +44,46 @@ document.addEventListener('DOMContentLoaded', function () {
   }
 
   try {
-    var cards = [
-      {
-        question: 'Qual é a enzima deficiente na Porfiria Aguda Intermitente (PAI)?',
-        answer: 'PBG-desaminase (porfobilinogênio desaminase), também conhecida como hidroximetilbilano sintase.'
-      },
-      {
-        question: 'Qual o principal sintoma abdominal das porfirias agudas?',
-        answer: 'Dor abdominal intensa e difusa, frequentemente acompanhada de náuseas, vômitos e constipação.'
-      },
-      {
-        question: 'Quais fatores podem desencadear uma crise aguda de porfiria?',
-        answer: 'Medicamentos indutores do CYP450 (barbitúricos, sulfonamidas), jejum prolongado, estresse, infecções, álcool e alterações hormonais.'
-      },
-      {
-        question: 'Qual o tratamento de primeira linha para crise aguda de porfiria?',
-        answer: 'Heminato de arginina (NormoSang/Hemina), associado a medidas de suporte como hidratação, controle da dor e suspensão de fatores desencadeantes.'
-      }
+    var flashcards = [
+      { q: 'Qual é a enzima deficiente na Porfiria Aguda Intermitente (PAI)?', a: 'PBG-desaminase (porfobilinogênio desaminase), também conhecida como hidroximetilbilano sintase.' },
+      { q: 'Qual o principal sintoma abdominal das porfirias agudas?', a: 'Dor abdominal intensa e difusa, frequentemente acompanhada de náuseas, vômitos e constipação.' },
+      { q: 'Quais fatores podem desencadear uma crise aguda de porfiria?', a: 'Medicamentos indutores do CYP450 (barbitúricos, sulfonamidas), jejum prolongado, estresse, infecções, álcool e alterações hormonais.' },
+      { q: 'Qual o tratamento de primeira linha para crise aguda de porfiria?', a: 'Heminato de arginina (NormoSang/Hemina), associado a medidas de suporte como hidratação, controle da dor e suspensão de fatores desencadeantes.' }
     ];
-
-    var currentCard = 0;
-    var flashcard = document.querySelector('.flashcard');
-    var frontP = document.querySelector('.flashcard-front > p');
-    var backP = document.querySelector('.flashcard-back > p');
-    var frontLabel = document.querySelector('.flashcard-front .flashcard-label');
-    var backLabel = document.querySelector('.flashcard-back .flashcard-label');
-    var hint = document.querySelector('.flashcard-hint');
-    var status = document.querySelector('.flashcard-status');
-
-    if (flashcard && frontP && backP && cards.length) {
-      function updateCard(index) {
-        var card = cards[index];
-        frontP.textContent = card.question;
-        backP.textContent = card.answer;
-        if (frontLabel) frontLabel.textContent = 'Pergunta ' + (index + 1);
-        if (backLabel) backLabel.textContent = 'Resposta ' + (index + 1);
+    var cardIdx = 0;
+    var el = document.querySelector('.flashcard');
+    var front = el && el.querySelector('.flashcard-front');
+    var back = el && el.querySelector('.flashcard-back');
+    var hint = el && el.parentNode.querySelector('.flashcard-hint');
+    var status = el && el.parentNode.querySelector('.flashcard-status');
+    if (el && front && back) {
+      var frontP = front.querySelector('p');
+      var backP = back.querySelector('p');
+      var frontLabel = front.querySelector('.flashcard-label');
+      var backLabel = back.querySelector('.flashcard-label');
+      function show(n) {
+        var c = flashcards[n];
+        if (frontP) frontP.textContent = c.q;
+        if (backP) backP.textContent = c.a;
+        if (frontLabel) frontLabel.textContent = 'Pergunta ' + (n + 1);
+        if (backLabel) backLabel.textContent = 'Resposta ' + (n + 1);
         if (hint) hint.textContent = 'Clique para ver a resposta';
-        if (status) status.textContent = 'Card ' + (index + 1) + ' de ' + cards.length + ' — clique para virar';
-        flashcard.classList.remove('flipped');
+        if (status) status.textContent = (n + 1) + '/' + flashcards.length + ' — clique no card';
+        el.classList.remove('flipped');
       }
-
-      flashcard.addEventListener('click', function () {
-        if (!this.classList.contains('flipped')) {
-          this.classList.add('flipped');
-          if (hint) hint.textContent = 'Clique para próxima pergunta';
+      el.addEventListener('click', function (e) {
+        e.stopPropagation();
+        if (el.classList.contains('flipped')) {
+          cardIdx = (cardIdx + 1) % flashcards.length;
+          show(cardIdx);
         } else {
-          currentCard = (currentCard + 1) % cards.length;
-          updateCard(currentCard);
+          el.classList.add('flipped');
+          if (hint) hint.textContent = 'Clique para próxima';
         }
       });
-
-      updateCard(0);
+      show(0);
     }
-  } catch (e) {
-    console.error('Flashcard error:', e);
-  }
+  } catch (e) { console.error('Flashcard:', e); }
 });
 
 window.addEventListener('load', function () {

@@ -788,6 +788,7 @@ img { max-width: 100%; height: auto; }
   top: 0;
   left: 0;
   right: 0;
+  bottom: 0;
   padding: 24px 20px;
   backface-visibility: hidden;
   -webkit-backface-visibility: hidden;
@@ -800,6 +801,11 @@ img { max-width: 100%; height: auto; }
   flex-direction: column;
   justify-content: center;
 }
+
+.flashcard-front { z-index: 2; }
+.flashcard-back { z-index: 1; }
+.flashcard.flipped .flashcard-front { z-index: 1; }
+.flashcard.flipped .flashcard-back { z-index: 2; }
 @media (min-width: 768px) {
   .flashcard-front, .flashcard-back {
     padding: 28px 24px;
