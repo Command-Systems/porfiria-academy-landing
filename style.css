@@ -5,11 +5,11 @@
 }
 
 :root {
-  --primary: #43d477;
-  --primary-hover: #1FB354;
+  --primary: #EC8B3B;
+  --primary-hover: #D2701E;
   --secondary: #1f3b64;
   --secondary-hover: #162a47;
-  --success-bg: #e7f4f0;
+  --success-bg: #FBF0E2;
   --info-bg: #ebf7ff;
   --warning: #ffab00;
   --danger: #f63c3c;
@@ -986,6 +986,64 @@ img { max-width: 100%; height: auto; }
 }
 @media (min-width: 768px) { .alert span { font-size: 0.85rem; } }
 
+.donate-mockup {
+  background: var(--white);
+  border-radius: 14px;
+  padding: 32px 24px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
+  border: 1px solid var(--gray200);
+  text-align: center;
+}
+@media (min-width: 768px) { .donate-mockup { padding: 40px 32px; } }
+
+.donate-icon-wrapper {
+  width: 80px;
+  height: 80px;
+  margin: 0 auto 24px;
+  background: rgba(67, 212, 119, 0.08);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+@media (min-width: 768px) { .donate-icon-wrapper { width: 96px; height: 96px; } }
+
+.donate-icon-wrapper svg { width: 48px; height: 48px; }
+@media (min-width: 768px) { .donate-icon-wrapper svg { width: 56px; height: 56px; } }
+
+.donate-values {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  max-width: 280px;
+  margin: 0 auto;
+}
+
+.donate-value-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 0.88rem;
+  color: var(--dark);
+  font-weight: 500;
+  padding: 10px 14px;
+  background: var(--panel-bg);
+  border-radius: 10px;
+  border: 1px solid var(--gray200);
+}
+@media (min-width: 768px) { .donate-value-item { font-size: 0.92rem; padding: 12px 16px; } }
+
+.donate-value-icon {
+  flex-shrink: 0;
+  width: 28px;
+  height: 28px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.donate-value-icon svg { width: 18px; height: 18px; }
+
 .cta {
   background: linear-gradient(135deg, var(--secondary) 0%, #162a47 100%);
   text-align: center;
@@ -1027,11 +1085,11 @@ img { max-width: 100%; height: auto; }
   color: var(--secondary);
   border-color: var(--primary);
 }
-.cta .btn-primary:active { background: #3bc46b; }
+.cta .btn-primary:active { background: #D2701E; }
 @media (hover: hover) {
   .cta .btn-primary:hover {
-    background: #3bc46b;
-    border-color: #3bc46b;
+    background: #D2701E;
+    border-color: #D2701E;
     color: var(--secondary);
   }
 }
