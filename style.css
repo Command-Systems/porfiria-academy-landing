@@ -1641,20 +1641,6 @@ img { max-width: 100%; height: auto; }
   line-height: 1.55;
 }
 
-.donation-pix-code {
-  width: 100%;
-  padding: 12px 14px;
-  border-radius: 10px;
-  border: 1px solid rgba(42, 131, 150, 0.2);
-  background: var(--white);
-  color: var(--secondary);
-  font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace;
-  font-size: 0.72rem;
-  line-height: 1.5;
-  word-break: break-all;
-  user-select: all;
-}
-
 .donation-pix-actions {
   display: flex;
   flex-wrap: wrap;
