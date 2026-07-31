@@ -7,10 +7,11 @@
 :root {
   --primary: #EC8B3B;
   --primary-hover: #D2701E;
-  --secondary: #1f3b64;
-  --secondary-hover: #162a47;
+  --primary-soft: #FBF0E2;
+  --secondary: #1E5562;
+  --secondary-hover: #163F49;
   --success-bg: #FBF0E2;
-  --info-bg: #ebf7ff;
+  --info-bg: #E5F3F7;
   --warning: #ffab00;
   --danger: #f63c3c;
   --panel-bg: #fbfbfd;
@@ -20,7 +21,9 @@
   --gray200: #f1f1f1;
   --gray300: #ececec;
   --white: #ffffff;
-  --blue: #27aeff;
+  --blue: #35A6BE;
+  --blue-hover: #2B8EA6;
+  --blue-soft: #E5F3F7;
 }
 
 html { scroll-behavior: smooth; }
@@ -78,14 +81,14 @@ img { max-width: 100%; height: auto; }
   background: var(--primary);
   color: var(--white);
   border-color: var(--primary);
-  box-shadow: 0 3px 6px 0 rgba(64, 213, 125, 0.3);
+  box-shadow: 0 3px 6px 0 rgba(236, 139, 59, 0.3);
 }
 .btn-primary:active { background: var(--primary-hover); }
 @media (hover: hover) {
   .btn-primary:hover {
     background: var(--primary-hover);
     border-color: var(--primary-hover);
-    box-shadow: 0 3px 8px 0 rgba(64, 213, 125, 0.3);
+    box-shadow: 0 3px 8px 0 rgba(236, 139, 59, 0.3);
     transform: translateY(-1px);
   }
 }
@@ -270,7 +273,7 @@ img { max-width: 100%; height: auto; }
   right: -30%;
   width: 400px;
   height: 400px;
-  background: radial-gradient(circle, rgba(67, 212, 119, 0.08) 0%, transparent 70%);
+  background: radial-gradient(circle, rgba(53, 166, 190, 0.1) 0%, transparent 70%);
   border-radius: 50%;
   pointer-events: none;
 }
@@ -302,8 +305,8 @@ img { max-width: 100%; height: auto; }
 .hero-badge {
   display: inline-block;
   padding: 5px 14px;
-  background: rgba(67, 212, 119, 0.1);
-  color: var(--primary-hover);
+  background: rgba(53, 166, 190, 0.12);
+  color: var(--secondary);
   font-size: 0.78rem;
   font-weight: 600;
   border-radius: 100px;
@@ -326,7 +329,7 @@ img { max-width: 100%; height: auto; }
   left: 0;
   right: 0;
   height: 6px;
-  background: rgba(67, 212, 119, 0.2);
+  background: linear-gradient(90deg, rgba(53, 166, 190, 0.35), rgba(236, 139, 59, 0.35));
   border-radius: 4px;
 }
 @media (min-width: 768px) {
@@ -409,10 +412,10 @@ img { max-width: 100%; height: auto; }
   .hero-card:hover {
     transform: translateY(-4px);
     box-shadow: 0 12px 40px rgba(0, 0, 0, 0.1);
-    border-color: rgba(67, 212, 119, 0.3);
+    border-color: rgba(236, 139, 59, 0.3);
   }
   .hero-card:hover .hero-card-icon {
-    background: rgba(67, 212, 119, 0.15);
+    background: rgba(236, 139, 59, 0.15);
     transform: scale(1.05);
   }
 }
@@ -424,7 +427,7 @@ img { max-width: 100%; height: auto; }
   align-items: center;
   justify-content: center;
   margin-bottom: 14px;
-  background: rgba(67, 212, 119, 0.08);
+  background: rgba(53, 166, 190, 0.1);
   border-radius: 14px;
   transition: all 0.3s;
 }
@@ -611,8 +614,8 @@ img { max-width: 100%; height: auto; }
 .feature-tag {
   display: inline-block;
   padding: 4px 12px;
-  background: rgba(67, 212, 119, 0.1);
-  color: var(--primary-hover);
+  background: rgba(53, 166, 190, 0.12);
+  color: var(--secondary);
   font-size: 0.75rem;
   font-weight: 600;
   border-radius: 100px;
@@ -839,11 +842,11 @@ img { max-width: 100%; height: auto; }
 @media (min-width: 768px) { .flashcard-label { font-size: 0.75rem; padding: 4px 10px; margin-bottom: 12px; } }
 
 .flashcard-front .flashcard-label {
-  background: rgba(67, 212, 119, 0.1);
+  background: rgba(236, 139, 59, 0.12);
   color: var(--primary-hover);
 }
 .flashcard-back .flashcard-label {
-  background: rgba(31, 59, 100, 0.1);
+  background: rgba(53, 166, 190, 0.12);
   color: var(--secondary);
 }
 
@@ -928,8 +931,8 @@ img { max-width: 100%; height: auto; }
 @media (min-width: 768px) { .ia-message-user { margin-right: 32px; } }
 
 .ia-message-bot {
-  background: rgba(67, 212, 119, 0.08);
-  border: 1px solid rgba(67, 212, 119, 0.15);
+  background: rgba(53, 166, 190, 0.08);
+  border: 1px solid rgba(53, 166, 190, 0.15);
   color: var(--dark);
   margin-left: 16px;
 }
@@ -1000,7 +1003,7 @@ img { max-width: 100%; height: auto; }
   width: 80px;
   height: 80px;
   margin: 0 auto 24px;
-  background: rgba(67, 212, 119, 0.08);
+  background: rgba(236, 139, 59, 0.1);
   border-radius: 50%;
   display: flex;
   align-items: center;
@@ -1045,7 +1048,7 @@ img { max-width: 100%; height: auto; }
 .donate-value-icon svg { width: 18px; height: 18px; }
 
 .cta {
-  background: linear-gradient(135deg, var(--secondary) 0%, #162a47 100%);
+  background: linear-gradient(135deg, var(--secondary-hover) 0%, var(--secondary) 55%, #8A4A10 100%);
   text-align: center;
   padding: 56px 0;
 }
@@ -1108,7 +1111,7 @@ img { max-width: 100%; height: auto; }
 
 .footer {
   background: var(--secondary);
-  border-top: 3px solid #305995;
+  border-top: 3px solid var(--blue);
   padding: 48px 0 0;
 }
 @media (min-width: 768px) { .footer { padding: 56px 0 0; } }
