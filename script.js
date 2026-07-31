@@ -114,6 +114,83 @@
     }
   }
 
+  var PIX_CODE = '00020126360014BR.GOV.BCB.PIX0114632292020001205204000053039865802BR5901N6001C62220518AssociacaoPorfiria6304C15F';
+  var copyButtons = document.querySelectorAll('[id^="copyPixBtn"]');
+  var qrModal = document.getElementById('qrModal');
+
+  function showToast(message) {
+    var toast = document.createElement('div');
+    toast.className = 'pix-toast';
+    toast.setAttribute('role', 'status');
+    toast.textContent = message;
+    document.body.appendChild(toast);
+    setTimeout(function () { toast.classList.add('is-visible'); }, 10);
+    setTimeout(function () {
+      toast.classList.remove('is-visible');
+      setTimeout(function () { toast.remove(); }, 300);
+    }, 2400);
+  }
+
+  function copyPix(event) {
+    var target = event.currentTarget;
+    var originalHTML = target.innerHTML;
+
+    function done() {
+      target.innerHTML = originalHTML;
+      showToast('Código PIX copiado!');
+    }
+
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(PIX_CODE).then(done).catch(function () { fallbackCopy(); });
+    } else {
+      fallbackCopy();
+    }
+
+    function fallbackCopy() {
+      var textarea = document.createElement('textarea');
+      textarea.value = PIX_CODE;
+      textarea.style.position = 'fixed';
+      textarea.style.opacity = '0';
+      document.body.appendChild(textarea);
+      textarea.select();
+      try { document.execCommand('copy'); } catch (e) {}
+      textarea.remove();
+      done();
+    }
+  }
+
+  copyButtons.forEach(function (btn) {
+    btn.addEventListener('click', copyPix);
+  });
+
+  function openQrModal() {
+    if (!qrModal) return;
+    qrModal.classList.add('is-open');
+    qrModal.setAttribute('aria-hidden', 'false');
+    document.body.style.overflow = 'hidden';
+    var closeBtn = qrModal.querySelector('.qr-modal-close');
+    if (closeBtn) closeBtn.focus();
+  }
+
+  function closeQrModal() {
+    if (!qrModal) return;
+    qrModal.classList.remove('is-open');
+    qrModal.setAttribute('aria-hidden', 'true');
+    document.body.style.overflow = '';
+  }
+
+  var showQrBtn = document.getElementById('showQrBtn');
+  if (showQrBtn) showQrBtn.addEventListener('click', openQrModal);
+
+  if (qrModal) {
+    qrModal.querySelectorAll('[data-qr-close]').forEach(function (el) {
+      el.addEventListener('click', closeQrModal);
+    });
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape' && qrModal.classList.contains('is-open')) closeQrModal();
+    });
+  }
+
   window.addEventListener('load', function () {
     document.body.classList.add('page-loaded');
   });
